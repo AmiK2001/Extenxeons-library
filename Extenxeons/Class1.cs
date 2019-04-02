@@ -5,8 +5,14 @@ using System.Text;
 
 namespace Extenxeons
 {
+    /// <summary>
+    /// Класс расширенных методов строк, предостовляющий новые методы.
+    /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// Производит срез строки.
+        /// </summary>
         public static string Slice(this string str, int startIndex, int endIndex, int step = 1)
         {
             // TODO: Сделать поддержку любого шага
@@ -14,13 +20,19 @@ namespace Extenxeons
             {
                 case 1:
                     return str.Substring(startIndex, endIndex - startIndex);
+
                 case -1:
                     return str.Substring(startIndex, endIndex - startIndex).ToCharArray().Reverse().ToArray().ArrayToString("");
+
                 default:
                     return "";
             }
         }
     }
+
+    /// <summary>
+    /// Класс статических методов, которые облегчают работу с консолью
+    /// </summary>
     public static class StaticConsole
     {
         public static void Print(object obj)
@@ -37,10 +49,32 @@ namespace Extenxeons
         {
             return Console.ReadLine();
         }
+
+        /// <summary>
+        /// Выводит текст и ожидает нажатия любой клавиши
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="nextLineBefore"></param>
+        public static void WaitKey(string text = "Нажмите любую клавишу для выхода...", bool nextLineBefore = true)
+        {
+            if (nextLineBefore == true)
+            {
+                PrintLn("");
+            }
+
+            Print(text);
+            Console.ReadKey();
+        }
     }
 
     public static class ObjectToString
     {
+        /// <summary>
+        /// Разделяет элементы массива разделителем и возвращает строку
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="splitter"></param>
+        /// <returns></returns>
         public static string ArrayToString(this Array array, string splitter = ", ")
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -61,6 +95,12 @@ namespace Extenxeons
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Разделяет элементы списка разделителем и возвращает строку
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="splitter"></param>
+        /// <returns></returns>
         public static string ListToString(this IList list, string splitter = ", ")
         {
             StringBuilder result = new StringBuilder("");
@@ -77,14 +117,15 @@ namespace Extenxeons
 
     public static class Randomy
     {
+        /// <summary>
+        /// Генерирует случайное целое число в заданном диапазоне
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public static int Int(int min, int max)
         {
-            return new Random(new Random(DateTime.Now.Millisecond).Next(1, int.MaxValue)).Next(min, max);
-        }
-
-        public static double Double()
-        {
-            return new Random(new Random(DateTime.Now.Millisecond).Next(1, int.MaxValue)).NextDouble();
+            return new Random(DateTime.Now.Millisecond).Next(min, max);
         }
     }
 }
