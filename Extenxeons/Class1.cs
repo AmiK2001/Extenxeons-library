@@ -15,14 +15,18 @@ namespace Extenxeons
         /// </summary>
         public static string Slice(this string str, int startIndex, int endIndex, int step = 1)
         {
-            // TODO: Сделать поддержку любого шага
+            // TODO: Сделать поддержку любого шага.
             switch (step)
             {
                 case 1:
                     return str.Substring(startIndex, endIndex - startIndex);
 
                 case -1:
-                    return str.Substring(startIndex, endIndex - startIndex).ToCharArray().Reverse().ToArray().ArrayToString("");
+                    return str.Substring(startIndex, endIndex - startIndex)
+                        .ToCharArray()
+                        .Reverse()
+                        .ToArray()
+                        .ArrayToString("");
 
                 default:
                     return "";
@@ -31,7 +35,7 @@ namespace Extenxeons
     }
 
     /// <summary>
-    /// Класс статических методов, которые облегчают работу с консолью
+    /// Класс статических методов, которые облегчают работу с консолью.
     /// </summary>
     public static class StaticConsole
     {
@@ -51,7 +55,18 @@ namespace Extenxeons
         }
 
         /// <summary>
-        /// Выводит текст и ожидает нажатия любой клавиши
+        /// Выводит текст и получает строковое значение с консольного потока ввода.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string Input(string text = "")
+        {
+            Print(text);
+            return ReadLn();
+        }
+
+        /// <summary>
+        /// Выводит текст и ожидает нажатия любой клавиши.
         /// </summary>
         /// <param name="text"></param>
         /// <param name="nextLineBefore"></param>
@@ -70,7 +85,7 @@ namespace Extenxeons
     public static class ObjectToString
     {
         /// <summary>
-        /// Разделяет элементы массива разделителем и возвращает строку
+        /// Разделяет элементы массива разделителем и возвращает строку.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="splitter"></param>
@@ -96,7 +111,7 @@ namespace Extenxeons
         }
 
         /// <summary>
-        /// Разделяет элементы списка разделителем и возвращает строку
+        /// Разделяет элементы списка разделителем и возвращает строку.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="splitter"></param>
@@ -118,7 +133,7 @@ namespace Extenxeons
     public static class Randomy
     {
         /// <summary>
-        /// Генерирует случайное целое число в заданном диапазоне
+        /// Генерирует случайное целое число в заданном диапазоне.
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
