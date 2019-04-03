@@ -40,7 +40,7 @@
         /// <summary>
         /// Разделяет элементы списка разделителем и возвращает строку.
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="list"></param>
         /// <param name="splitter"></param>
         /// <returns> Возвращает строку </returns>
         public static string ListToString(this IList list, string splitter = ", ")

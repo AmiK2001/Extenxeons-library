@@ -18,7 +18,7 @@
                 .Concat(Enumerable.Range('a', 'z' - 'a' + 1).Select(c => (char)c))
                 .Concat(Enumerable.Range(48, 9).Select(c => (char)c)).ToArray();
 
-            return Enumerable.Range(0, size).Select(i => chars[RandomNums.Int(0, chars.Length)]).ToArray()
+            return Enumerable.Range(0, size).Select(i => chars[RandomExt.Int(0, chars.Length)]).ToArray()
                 .ArrayToString(string.Empty);
         }
     }
