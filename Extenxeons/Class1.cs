@@ -132,6 +132,9 @@ namespace Extenxeons
 
     public static class Randomy
     {
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+
         /// <summary>
         /// Генерирует случайное целое число в заданном диапазоне.
         /// </summary>
@@ -140,7 +143,32 @@ namespace Extenxeons
         /// <returns></returns>
         public static int Int(int min, int max)
         {
-            return new Random(DateTime.Now.Millisecond).Next(min, max);
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Класс содержащий методы генерации разных структур данных
+    /// </summary>
+    public static class Generators
+    {
+        public static string GenerateString(int size)
+        {
+            char[] chars = Enumerable.Range('A', 'Z' - 'A' + 1)
+                .Select(c => (char)c)
+                .Concat(Enumerable.Range('a', 'z' - 'a' + 1)
+                .Select(c => (char)c))
+                .Concat(Enumerable.Range(48, 9)
+                .Select(c => (char)c))
+                .ToArray();
+
+            return Enumerable.Range(0, size)
+                .Select(i => chars[Randomy.Int(0, chars.Length)])
+                .ToArray()
+                .ArrayToString("");
         }
     }
 }
