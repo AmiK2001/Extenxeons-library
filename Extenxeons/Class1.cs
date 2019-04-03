@@ -39,26 +39,39 @@ namespace Extenxeons
     /// </summary>
     public static class StaticConsole
     {
+        /// <summary>
+        /// Записывает заданное строковое значение обьекта в стандартный выходной поток.
+        /// </summary>
+        /// <param name="obj"></param>
         public static void Print(object obj)
         {
             Console.Write(obj.ToString());
         }
 
+        /// <summary>
+        /// Записывает заданное строковое значение обьекта, за которым следует признак конца строки,
+        /// в стандартный выходной поток.
+        /// </summary>
+        /// <param name="obj"></param>
         public static void PrintLn(object obj)
         {
             Console.WriteLine(obj.ToString());
         }
 
+        /// <summary>
+        /// Считывает следующую строку из стандартного входного потока.
+        /// </summary>
+        /// <returns> Возвращает считанную строку </returns>
         public static string ReadLn()
         {
             return Console.ReadLine();
         }
 
         /// <summary>
-        /// Выводит текст и получает строковое значение с консольного потока ввода.
+        /// Выводит текст и получает строковое значение из стандартного входного потока.
         /// </summary>
         /// <param name="text"></param>
-        /// <returns></returns>
+        /// <returns> Возвращает считанную строку </returns>
         public static string Input(string text = "")
         {
             Print(text);
@@ -82,6 +95,9 @@ namespace Extenxeons
         }
     }
 
+    /// <summary>
+    /// Класс содержащий методы для преобразования других обьектов в строку.
+    /// </summary>
     public static class ObjectToString
     {
         /// <summary>
@@ -89,7 +105,7 @@ namespace Extenxeons
         /// </summary>
         /// <param name="array"></param>
         /// <param name="splitter"></param>
-        /// <returns></returns>
+        /// <returns> Возвращает строку </returns>
         public static string ArrayToString(this Array array, string splitter = ", ")
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -115,7 +131,7 @@ namespace Extenxeons
         /// </summary>
         /// <param name="array"></param>
         /// <param name="splitter"></param>
-        /// <returns></returns>
+        /// <returns> Возвращает строку </returns>
         public static string ListToString(this IList list, string splitter = ", ")
         {
             StringBuilder result = new StringBuilder("");
@@ -130,7 +146,10 @@ namespace Extenxeons
         }
     }
 
-    public static class Randomy
+    /// <summary>
+    /// Класс со статическими методами генерации случайных чисел.
+    /// </summary>
+    public static class RandomNums
     {
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
@@ -140,7 +159,7 @@ namespace Extenxeons
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
-        /// <returns></returns>
+        /// <returns> Возвращает случайное целое число </returns>
         public static int Int(int min, int max)
         {
             lock (syncLock)
@@ -151,10 +170,15 @@ namespace Extenxeons
     }
 
     /// <summary>
-    /// Класс содержащий методы генерации разных структур данных
+    /// Класс содержащий методы генерации разных структур данных.
     /// </summary>
     public static class Generators
     {
+        /// <summary>
+        /// Генерирует строку с символами в диапазоне {A-Z} и {a-z} и {0-9} заданной длины.
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns> Возвращает случайную строку </returns>
         public static string GenerateString(int size)
         {
             char[] chars = Enumerable.Range('A', 'Z' - 'A' + 1)
@@ -166,7 +190,7 @@ namespace Extenxeons
                 .ToArray();
 
             return Enumerable.Range(0, size)
-                .Select(i => chars[Randomy.Int(0, chars.Length)])
+                .Select(i => chars[RandomNums.Int(0, chars.Length)])
                 .ToArray()
                 .ArrayToString("");
         }
