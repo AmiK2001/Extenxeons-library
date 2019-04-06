@@ -1,20 +1,15 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Extenxeons
-{
-    public static class Crypta
-    {
-        static public byte[] RSAEncrypt(byte[] byteEncrypt, RSAParameters RSAInfo, bool isOAEP)
-        {
-            try
-            {
+namespace Extenxeons {
+    public static class Crypta {
+        static public byte[] RSAEncrypt(byte[] byteEncrypt, RSAParameters RSAInfo, bool isOAEP) {
+            try {
                 byte[] encryptedData;
                 //Create a new instance of RSACryptoServiceProvider.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                {
+                using(RSACryptoServiceProvider RSA = new RSACryptoServiceProvider()) {
                     //Import the RSA Key information. This only needs
                     //toinclude the public key information.
                     RSA.ImportParameters(RSAInfo);
@@ -26,22 +21,18 @@ namespace Extenxeons
             }
             //Catch and display a CryptographicException
             //to the console.
-            catch (CryptographicException e)
-            {
+            catch (CryptographicException e) {
                 Console.WriteLine(e.Message);
 
                 return null;
             }
         }
 
-        static public byte[] RSADecrypt(byte[] byteDecrypt, RSAParameters RSAInfo, bool isOAEP)
-        {
-            try
-            {
+        static public byte[] RSADecrypt(byte[] byteDecrypt, RSAParameters RSAInfo, bool isOAEP) {
+            try {
                 byte[] decryptedData;
                 //Create a new instance of RSACryptoServiceProvider.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                {
+                using(RSACryptoServiceProvider RSA = new RSACryptoServiceProvider()) {
                     //Import the RSA Key information. This only needs
                     //toinclude the public key information.
                     RSA.ImportParameters(RSAInfo);
@@ -53,16 +44,14 @@ namespace Extenxeons
             }
             //Catch and display a CryptographicException
             //to the console.
-            catch (CryptographicException e)
-            {
+            catch (CryptographicException e) {
                 Console.WriteLine(e.Message);
 
                 return null;
             }
         }
 
-        public static byte[] DESEncrypt(string strText, SymmetricAlgorithm key)
-        {
+        public static byte[] DESEncrypt(string strText, SymmetricAlgorithm key) {
             // Create a memory stream.
             MemoryStream ms = new MemoryStream();
 
@@ -90,24 +79,20 @@ namespace Extenxeons
             return buffer;
         }
 
-        private static class Hash
-        {
-            public static string SHA1(string plaintext)
-            {
+        private static class Hash {
+            public static string SHA1(string plaintext) {
                 var sha = new SHA1Managed();
                 byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
                 return Convert.ToBase64String(hash);
             }
 
-            public static string SHA256(string plaintext)
-            {
+            public static string SHA256(string plaintext) {
                 var sha = new SHA256Managed();
                 byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
                 return Convert.ToBase64String(hash);
             }
 
-            public static string MD5(string plaintext)
-            {
+            public static string MD5(string plaintext) {
                 var md5 = new MD5Cng();
                 byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
                 return Convert.ToBase64String(hash);
