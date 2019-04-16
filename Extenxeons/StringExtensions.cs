@@ -1,30 +1,36 @@
-namespace Extenxeons {
-    using System.Linq;
+using System.Linq;
 
+namespace Extenxeons
+{
     /// <summary>
-    /// Класс расширенных методов строк, представляющий новые методы.
+    /// Extension class of strings
     /// </summary>
-    public static class StringExtensions {
+    public static class StringExtensions
+    {
         /// <summary>
-        /// Срезает строку
+        /// Cut string
         /// </summary>
-        /// <param name="str"> Исходная строка </param>
-        /// <param name="startIndex"> Начальный индекс среза </param>
-        /// <param name="endIndex"> Конечный индекс среза </param>
-        /// <param name="step"> Шаг среза </param>
-        /// <returns> Возвращает срезанную строку </returns>
-        public static string Slice(this string str, int startIndex, int endIndex, int step = 1) {
-            // TODO: Сделать поддержку любого шага.
-            switch (step) {
-                case 1:
-                    return str.Substring(startIndex, endIndex - startIndex);
-
-                case -1:
-                    return str.Substring(startIndex, endIndex - startIndex).ToCharArray().Reverse().ToArray()
-                        .ArrayToString(string.Empty);
-
-                default:
-                    return string.Empty;
+        /// <param name="str"> String to cut </param>
+        /// <param name="startIndex"> Start cut index </param>
+        /// <param name="endIndex"> End cut index </param>
+        /// <param name="step"> Cut step </param>
+        /// <returns> Return cutted string </returns>
+        public static string Slice(this string str, int startIndex, int endIndex, int step = 1)
+        {
+            string temp = str.Select(i => i)
+                .TakeWhile(x => str.IndexOf(x) <= endIndex).Skip(startIndex)
+                .ToArray().ArrayToString(string.Empty);
+            
+            if (step == 0 || step == 1) {
+                return temp;
+            }
+            else if (step > 1)
+            {
+                return string.Join<char>(string.Empty, temp.Where((ch, index) => (index % step != 0)));
+            }
+            else
+            {
+                return string.Empty;
             }
         }
     }
