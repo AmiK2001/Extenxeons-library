@@ -7,13 +7,13 @@ namespace Extenxeons
 {
     public static class Crypta
     {
-        static public byte[] RSAEncrypt(byte[] byteEncrypt, RSAParameters RSAInfo, bool isOAEP)
+        public static byte[] RSAEncrypt(byte[] byteEncrypt, RSAParameters RSAInfo, bool isOAEP)
         {
             try
             {
                 byte[] encryptedData;
                 //Create a new instance of RSACryptoServiceProvider.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (var RSA = new RSACryptoServiceProvider())
                 {
                     //Import the RSA Key information. This only needs
                     //toinclude the public key information.
@@ -22,6 +22,7 @@ namespace Extenxeons
                     //Encrypt the passed byte array and specify OAEP padding.
                     encryptedData = RSA.Encrypt(byteEncrypt, isOAEP);
                 }
+
                 return encryptedData;
             }
             //Catch and display a CryptographicException
@@ -34,13 +35,13 @@ namespace Extenxeons
             }
         }
 
-        static public byte[] RSADecrypt(byte[] byteDecrypt, RSAParameters RSAInfo, bool isOAEP)
+        public static byte[] RSADecrypt(byte[] byteDecrypt, RSAParameters RSAInfo, bool isOAEP)
         {
             try
             {
                 byte[] decryptedData;
                 //Create a new instance of RSACryptoServiceProvider.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (var RSA = new RSACryptoServiceProvider())
                 {
                     //Import the RSA Key information. This only needs
                     //toinclude the public key information.
@@ -49,6 +50,7 @@ namespace Extenxeons
                     //Encrypt the passed byte array and specify OAEP padding.
                     decryptedData = RSA.Decrypt(byteDecrypt, isOAEP);
                 }
+
                 return decryptedData;
             }
             //Catch and display a CryptographicException
@@ -64,14 +66,14 @@ namespace Extenxeons
         public static byte[] DESEncrypt(string strText, SymmetricAlgorithm key)
         {
             // Create a memory stream.
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
 
             // Create a CryptoStream using the memory stream and the
             // CSP(cryptoserviceprovider) DES key.
-            CryptoStream crypstream = new CryptoStream(ms, key.CreateEncryptor(), CryptoStreamMode.Write);
+            var crypstream = new CryptoStream(ms, key.CreateEncryptor(), CryptoStreamMode.Write);
 
             // Create a StreamWriter to write a string to the stream.
-            StreamWriter sw = new StreamWriter(crypstream);
+            var sw = new StreamWriter(crypstream);
 
             // Write the strText to the stream.
             sw.WriteLine(strText);
@@ -81,7 +83,7 @@ namespace Extenxeons
             crypstream.Close();
 
             // Get an array of bytes that represents the memory stream.
-            byte[] buffer = ms.ToArray();
+            var buffer = ms.ToArray();
 
             // Close the memory stream.
             ms.Close();
@@ -95,21 +97,21 @@ namespace Extenxeons
             public static string SHA1(string plaintext)
             {
                 var sha = new SHA1Managed();
-                byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
+                var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
                 return Convert.ToBase64String(hash);
             }
 
             public static string SHA256(string plaintext)
             {
                 var sha = new SHA256Managed();
-                byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
+                var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
                 return Convert.ToBase64String(hash);
             }
 
             public static string MD5(string plaintext)
             {
                 var md5 = new MD5Cng();
-                byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(plaintext));
                 return Convert.ToBase64String(hash);
             }
         }

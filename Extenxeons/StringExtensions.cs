@@ -3,35 +3,39 @@ using System.Linq;
 namespace Extenxeons
 {
     /// <summary>
-    /// Extension class of strings
+    ///     Расшиоенный класс строк.
     /// </summary>
     public static class StringExtensions
     {
         /// <summary>
-        /// Cut string
+        ///     Срезает часть строки
         /// </summary>
-        /// <param name="str"> String to cut </param>
-        /// <param name="startIndex"> Start cut index </param>
-        /// <param name="endIndex"> End cut index </param>
-        /// <param name="step"> Cut step </param>
-        /// <returns> Return cutted string </returns>
+        /// <param name="str"> Исходная строка </param>
+        /// <param name="startIndex"> Начальный индекс среза </param>
+        /// <param name="endIndex"> Конечный индекс среза </param>
+        /// <param name="step"> Шаг среза </param>
+        /// <returns> Возвращает срезанную строку </returns>
         public static string Slice(this string str, int startIndex, int endIndex, int step = 1)
         {
-            string temp = str.Select(i => i)
+            var temp = str.Select(i => i)
                 .TakeWhile(x => str.IndexOf(x) <= endIndex).Skip(startIndex)
                 .ToArray().ArrayToString(string.Empty);
-            
-            if (step == 0 || step == 1) {
+
+            if (step == 0 || step == 1)
                 return temp;
-            }
-            else if (step > 1)
-            {
-                return string.Join<char>(string.Empty, temp.Where((ch, index) => (index % step != 0)));
-            }
-            else
-            {
-                return string.Empty;
-            }
+            if (step > 1)
+                return string.Join(string.Empty, temp.Where((ch, index) => index % step != 0));
+            return string.Empty;
+        }
+
+        /// <summary>
+        ///     Проверяет, все ли символы в строке являются числами
+        /// </summary>
+        /// <param name="str"> Входная строка </param>
+        /// <returns> Возвращает true, если все символы в строке числа </returns>
+        public static bool IsAllDigits(this string str)
+        {
+            return str.All(char.IsDigit) && !string.IsNullOrEmpty(str);
         }
     }
 }

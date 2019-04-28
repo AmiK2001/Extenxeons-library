@@ -1,17 +1,17 @@
+using System;
+
 namespace Extenxeons
 {
-    using System;
-
     /// <summary>
-    /// Static methods class to simplify Console IO.
+    ///     Статичный класс для облегчения работы с консольный вводом-выводом.
     /// </summary>
     public static class StaticConsole
     {
         /// <summary>
-        /// Print text and read string value from standard input stream.
+        ///     Выводит текст и читает значение в строку со стандатного входного потока.
         /// </summary>
-        /// <param name="text"> Text to print </param>
-        /// <returns> Return string </returns>
+        /// <param name="text"> Текст для вывода </param>
+        /// <returns> Возвращает строку </returns>
         public static string Input(string text = "")
         {
             Print(text);
@@ -19,7 +19,7 @@ namespace Extenxeons
         }
 
         /// <summary>
-        /// Записывает заданное строковое значение объекта в стандартный выходной поток.
+        ///     Записывает заданное строковое значение объекта в стандартный выходной поток.
         /// </summary>
         /// <param name="obj"> Объект для вывода строкового значения </param>
         public static void Print(object obj)
@@ -28,24 +28,20 @@ namespace Extenxeons
         }
 
         /// <summary>
-        /// Записывает заданное строковое значение объекта, за которым следует признак конца строки,
-        /// в стандартный выходной поток.
+        ///     Записывает заданное строковое значение объекта, за которым следует признак конца строки,
+        ///     в стандартный выходной поток.
         /// </summary>
         /// <param name="obj"> Объект для вывода строкового значения </param>
         public static void PrintLn(object obj = null)
         {
             if (obj == null)
-            {
                 Console.WriteLine();
-            }
             else
-            {
                 Console.WriteLine(obj.ToString());
-            }
         }
 
         /// <summary>
-        /// Считывает следующую строку из стандартного входного потока.
+        ///     Считывает следующую строку из стандартного входного потока.
         /// </summary>
         /// <returns> Возвращает считанную строку </returns>
         public static string ReadLn()
@@ -54,16 +50,13 @@ namespace Extenxeons
         }
 
         /// <summary>
-        /// Выводит текст и ожидает нажатия любой клавиши.
+        ///     Выводит текст и ожидает нажатия любой клавиши.
         /// </summary>
         /// <param name="text"> Отображаемый текст </param>
         /// <param name="nextLineBefore"> Перемещать на следующую строку перед выводом текста </param>
         public static void WaitKey(string text = "Нажмите любую клавишу для выхода...", bool nextLineBefore = true)
         {
-            if (nextLineBefore == true)
-            {
-                PrintLn(string.Empty);
-            }
+            if (nextLineBefore) PrintLn(string.Empty);
 
             Print(text);
             Console.ReadKey();
