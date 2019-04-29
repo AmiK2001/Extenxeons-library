@@ -18,3 +18,9 @@ using Extenxeons;
 ```csharp
 using static Extenxeons.StaticConsole;
 ```
+
+# Основные классы
+
+- **StaticConsole** - Cтатичный класс для облегчения работы с консольным вводом-выводом.
+Методы:
+- **string Input(string text = "")** - Выводит текст и читает значение в строку со стандартного входного потока.
