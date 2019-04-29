@@ -13,7 +13,7 @@ namespace Extenxeons
         private static readonly object syncLock = new object();
 
         /// <summary>
-        ///     Возвращает случайный элемент в массиве
+        ///     Возвращает случайный элемент в массиве.
         /// </summary>
         /// <param name="array"> Массив элементов, из которых производится выбор </param>
         /// <returns> Возвращает строку </returns>

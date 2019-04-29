@@ -4,8 +4,17 @@ using System.Text;
 
 namespace Extenxeons
 {
+    /// <summary>
+    ///     Преобразует объект из одного типа в строку
+    /// </summary>
     public static class ObjectToString
     {
+        /// <summary>
+        ///     Преобразует значение данного экземпляра в String
+        /// </summary>
+        /// <param name="array"> Экземпляр объекта </param>
+        /// <param name="splitter"> Разделитель между элементами </param>
+        /// <returns> Возвращает строковой вид объекта </returns>
         public static string ArrayToString(this Array array, string splitter = ", ")
         {
             var stringBuilder = new StringBuilder();
@@ -20,6 +29,12 @@ namespace Extenxeons
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        ///     Преобразует значение данного экземпляра в String
+        /// </summary>
+        /// <param name="list"> Экземпляр объекта </param>
+        /// <param name="splitter"> Разделитель между элементами </param>
+        /// <returns> Возвращает строковой вид объекта </returns>
         public static string ListToString(this IList list, string splitter = ", ")
         {
             var result = new StringBuilder();

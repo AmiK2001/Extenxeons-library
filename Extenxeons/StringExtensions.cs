@@ -3,18 +3,18 @@ using System.Linq;
 namespace Extenxeons
 {
     /// <summary>
-    ///     Расшиоенный класс строк.
+    ///     Р Р°СЃС€РёРѕРµРЅРЅС‹Р№ РєР»Р°СЃСЃ СЃС‚СЂРѕРє.
     /// </summary>
     public static class StringExtensions
     {
         /// <summary>
-        ///     Срезает часть строки
+        ///     РЎСЂРµР·Р°РµС‚ С‡Р°СЃС‚СЊ СЃС‚СЂРѕРєРё
         /// </summary>
-        /// <param name="str"> Исходная строка </param>
-        /// <param name="startIndex"> Начальный индекс среза </param>
-        /// <param name="endIndex"> Конечный индекс среза </param>
-        /// <param name="step"> Шаг среза </param>
-        /// <returns> Возвращает срезанную строку </returns>
+        /// <param name="str"> РСЃС…РѕРґРЅР°СЏ СЃС‚СЂРѕРєР° </param>
+        /// <param name="startIndex"> РќР°С‡Р°Р»СЊРЅС‹Р№ РёРЅРґРµРєСЃ СЃСЂРµР·Р° </param>
+        /// <param name="endIndex"> РљРѕРЅРµС‡РЅС‹Р№ РёРЅРґРµРєСЃ СЃСЂРµР·Р° </param>
+        /// <param name="step"> РЁР°Рі СЃСЂРµР·Р° </param>
+        /// <returns> Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃСЂРµР·Р°РЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ </returns>
         public static string Slice(this string str, int startIndex, int endIndex, int step = 1)
         {
             var temp = str.Select(i => i)
@@ -29,10 +29,10 @@ namespace Extenxeons
         }
 
         /// <summary>
-        ///     Проверяет, все ли символы в строке являются числами
+        ///     РџСЂРѕРІРµСЂСЏРµС‚, РІСЃРµ Р»Рё СЃРёРјРІРѕР»С‹ РІ СЃС‚СЂРѕРєРµ СЏРІР»СЏСЋС‚СЃСЏ С‡РёСЃР»Р°РјРё
         /// </summary>
-        /// <param name="str"> Входная строка </param>
-        /// <returns> Возвращает true, если все символы в строке числа </returns>
+        /// <param name="str"> Р’С…РѕРґРЅР°СЏ СЃС‚СЂРѕРєР° </param>
+        /// <returns> Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РІСЃРµ СЃРёРјРІРѕР»С‹ РІ СЃС‚СЂРѕРєРµ С‡РёСЃР»Р° </returns>
         public static bool IsAllDigits(this string str)
         {
             return str.All(char.IsDigit) && !string.IsNullOrEmpty(str);
