@@ -3,7 +3,7 @@ using System.Linq;
 namespace Extenxeons
 {
     /// <summary>
-    ///     Расшиоенный класс строк.
+    ///     Расширенный класс строк.
     /// </summary>
     public static class StringExtensions
     {
